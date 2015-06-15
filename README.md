@@ -25,13 +25,13 @@ If you're on Mac OS, [here](http://ntraft.com/installing-gdb-on-os-x-mavericks/)
 ##Usage
 This plugin is implemented using GDB.
 
-First, compile your C++ program with debugging by using the `-g` tag for `g++`.  
-Next, run gdb by calling `gdb -x src/pyviz.py`.  
-This will set the source of gdb to include the pyviz plugin.  
-Then load your binary file with `file <filename>`.  
+First, compile your C++ program with debugging by using the `-g` tag for `g++`.
+Next, run gdb by calling `gdb -x src/pyviz.py`.
+This will set the source of gdb to include the pyviz plugin.
+Then load your binary file with `file <filename>`.
 
-Then simply step through your program.  
-When you've reached a point you wish to visualize, simply call `visualize <structure>` from within gdb.  
+Then simply step through your program.
+When you've reached a point you wish to visualize, simply call `visualize <structure>` from within gdb.
 This will render out a `raw.txt` file that you can build using `dot`.  
 Simply call `dot -T<format> -o<name> < raw.txt`  
 
