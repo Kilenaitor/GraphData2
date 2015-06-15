@@ -39,5 +39,9 @@ For example, `dot -Tpng -ofile.png < raw.txt`
 That will generate out the png to see your data structure!  
 
 ##Work in Progress
-Feel free to open an issue if something isn't working or you just want something addd.
+Goal is to finish up the project as soon as possible.
+Right now only the nodes will be drawn in the image file without any edges between them.
+I'm working as fast as I can to get it finished and will keep this repo updated with progress.
+
+Feel free to open an issue if something isn't working or you just want something add.
 My QA department isn't exactly overstaffed.
