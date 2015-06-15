@@ -14,28 +14,31 @@ def print_struct_follow_pointers(s, file, level = 0, counter = 0):
     indent = ' '
     
     if not is_container(s):
-        file.write('%s | ' % (s,))
+        if counter != 0:
+            file.write('%s | ' % (s,))
         return
-
-    file.write('%s%s%s [ shape=record, label=\"' % (indent,s.type, counter))
+    if counter != 0:
+        file.write('%s%s%s [ shape=record, label=\"' % (indent,s.type, counter))
     for k in s.type.keys():
         v = s[k]
         if is_pointer(v):
-            file.write('%s%s | ' % (indent, k))
+            if counter != 0:
+                file.write('%s%s | ' % (indent, k))
             try:
                 v1 = v.dereference()
                 v1.fetch_lazy()
             except gdb.error:
                 continue
             path.append(v1)
-            #print_struct_follow_pointers(v1, file, level + 1)
         elif is_container(v):
-            file.write('%s | ' % (indent, k))
+            if counter != 0:
+                file.write('%s | ' % (indent, k))
             path.append(v)
-#            print_struct_follow_pointers(v, file, level + 1)
         else:
-            file.write('%s<%s>%s | ' % (indent, k, v))
-    file.write('%s\"];\n' % (indent,))
+            if counter != 0:
+                file.write('%s<%s>%s | ' % (indent, k, v))
+    if counter != 0:
+        file.write('%s\"];\n' % (indent,))
     
     if len(path) > 0:
         temp_nm = path.pop()
@@ -67,5 +70,6 @@ class PrintStructFollowPointers(gdb.Command):
         f.write('}')
         f.close()
         gdb.write("Saved as raw file\n")
+        
 
 PrintStructFollowPointers()
