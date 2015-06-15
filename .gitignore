@@ -3,3 +3,5 @@
 *.out
 *.a
 *.dSYM
+*.png
+*.txt
